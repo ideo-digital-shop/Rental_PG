@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  email: MyString
+  end: 2012-07-02
+  device_id: 1
+
+two:
+  email: MyString
+  end: 2012-07-02
+  device_id: 1
