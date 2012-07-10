@@ -1,8 +1,10 @@
-<h1>Listing devices</h1>
+<h1>Devices</h1>
 <table class="table table-condensed">
   <tr>
     <th>Device</th>
     <th>Device type</th>
+    <th>Rented to</th>
+    <th>Available After</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,13 +14,14 @@
   <tr>
     <td><%= device.device_id %></td>
     <td><%= device.device_type %></td>
+    <% latest_rental = device.rentals.sort_by{|rental| rental.end}.last %>
+    <td><%= mail_to latest_rental.email %></td>
+    <td><%= latest_rental.end %> </td>
     <td><%= link_to 'Show', device %></td>
-    <td><%= link_to 'Edit', edit_device_path(device) %></td>
-    <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Device', new_device_path %>
+<%= link_to 'New Device', new_device_path, :class => "btn btn-primary" %>

@@ -14,7 +14,7 @@
 <% @rentals.each do |rental| %>
   <tr>
     <td><%= rental.renter %></td>
-    <td><%= rental.email %></td>
+    <td><%= mail_to rental.email %></td>
     <td><%= rental.end %></td>
     <td><%= rental.device_id %></td>
     <td><%= link_to 'Show', rental %></td>
@@ -26,4 +26,4 @@
 
 <br />
 
-<%= link_to 'New Rental', new_rental_path %>
+<%= link_to 'New Rental', new_rental_path, :class => "btn btn-primary" %>

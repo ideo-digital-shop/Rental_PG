@@ -25,7 +25,7 @@ class RentalsController < ApplicationController
   # GET /rentals/new.json
   def new
     @rental = Rental.new
-
+    @rental_id = params[:id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @rental }
