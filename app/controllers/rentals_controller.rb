@@ -27,6 +27,7 @@ class RentalsController < ApplicationController
     @rental = Rental.new
     @rental_id = params[:id]
     respond_to do |format|
+      RenterMailer.reminder_Email(@rental).deliver
       format.html # new.html.erb
       format.json { render json: @rental }
     end
