@@ -7,3 +7,4 @@ ActionMailer::Base.smtp_settings = {
   :domain         => 'heroku.com'
 }
 ActionMailer::Base.delivery_method = :smtp
+puts(ENV['SENDGRID_USERNAME'])
