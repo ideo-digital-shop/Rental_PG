@@ -1,8 +1,9 @@
 class RenterMailer < ActionMailer::Base
-  default from: "from@example.com"
+
+  default from: "noreply@ideo.com"
   def reminderEmail(rental)
   	@rental = rental
   	@url = 'rentsys.herokuapp.com'
-  	mail(:to => rental.email, :subject => "Welcome to My Awesome Site")
+  	mail(:to => rental.email, :subject => "Digital Shop iPad Rental Confirmation")
   end
 end
