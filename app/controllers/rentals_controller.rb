@@ -27,7 +27,6 @@ class RentalsController < ApplicationController
     @rental = Rental.new
     @rental_id = params[:id]
     respond_to do |format|
-      RenterMailer.reminder_Email(@rental).deliver
       format.html # new.html.erb
       format.json { render json: @rental }
     end
@@ -42,9 +41,9 @@ class RentalsController < ApplicationController
   # POST /rentals.json
   def create
     @rental = Rental.new(params[:rental])
-
     respond_to do |format|
       if @rental.save
+        RenterMailer.reminderEmail(@rental).deliver
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render json: @rental, status: :created, location: @rental }
       else
