@@ -4,4 +4,5 @@ class RenterMailer < ActionMailer::Base
   	@rental = rental
   	@url = 'rentsys.herokuapp.com'
   	mail(:to => rental.email, :subject => "Welcome to My Awesome Site")
+  end
 end
