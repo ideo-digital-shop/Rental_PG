@@ -54,6 +54,10 @@ class RentalsController < ApplicationController
     end
   end
 
+  def return
+    @rental = Rental.where("device_id = ? and email = ?", params[:device_id], params[:email])
+  end
+
   # PUT /rentals/1
   # PUT /rentals/1.json
   def update
