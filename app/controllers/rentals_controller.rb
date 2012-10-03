@@ -44,6 +44,7 @@ class RentalsController < ApplicationController
     respond_to do |format|
       if @rental.save
         RenterMailer.reminderEmail(@rental).deliver
+        Rental.emailRenters
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render json: @rental, status: :created, location: @rental }
       else
