@@ -4,7 +4,7 @@ class Rental < ActiveRecord::Base
   belongs_to :device
   def self.emailRenters
     for renter in self.all
-    	if renter.date < Date.current()
+    	if renter.end < Date.current()
      		RenterMailer.reminderEmail(renter).deliver
      	end
     end

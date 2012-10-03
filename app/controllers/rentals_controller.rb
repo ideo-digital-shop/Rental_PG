@@ -43,7 +43,7 @@ class RentalsController < ApplicationController
     @rental = Rental.new(params[:rental])
     respond_to do |format|
       if @rental.save
-        RenterMailer.reminderEmail(@rental).deliver
+        RenterMailer.confirmEmail(@rental).deliver
         Rental.emailRenters
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render json: @rental, status: :created, location: @rental }
