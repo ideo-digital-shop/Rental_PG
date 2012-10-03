@@ -3,8 +3,10 @@ class Rental < ActiveRecord::Base
   attr_accessible :device_id, :email, :end, :renter
   belongs_to :device
   def self.emailRenters
-    for renter in self.where("'end' < ?", Date.current())
-      RenterMailer.reminderEmail(renter).deliver
+    for renter in self.all
+    	if renter.date < Date.current()
+     		RenterMailer.reminderEmail(renter).deliver
+     	end
     end
   end
 end
