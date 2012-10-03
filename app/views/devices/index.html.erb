@@ -15,8 +15,9 @@
     <td><%= device.device_id %></td>
     <td><%= device.device_type %></td>
     <% latest_rental = device.rentals.sort_by{|rental| rental.end}.last %>
-    <td><%= mail_to latest_rental.email %></td>
-    <td><%= latest_rental.end %> </td>
+    <% rental = device.rentals.empty? %>
+    <td><%= if rental mail_to latest_rental.email  end %></td>
+    <td><%= if rental latest_rental.end  end %> </td>
     <td><%= link_to 'Show', device %></td>
   </tr>
 <% end %>

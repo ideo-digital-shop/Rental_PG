@@ -1,0 +1,24 @@
+<%= form_for(@rental) do |f| %>
+  <% if @rental.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this return from being confirmed:</h2>
+
+      <ul>
+      <% @rental.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :device_id %><br />
+    <%= f.number_field :device_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Confirm Return", :class => "btn btn-primary" %>
+  </div>
+<% end %>
