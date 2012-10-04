@@ -16,7 +16,7 @@
     <% rental_empty = device.rental.nil? %>
     <td><%= (rental_empty ? "n/a": (mail_to latest_rental.email)) %></td>
     <td><%= (rental_empty ? "Currently Available": latest_rental.end) %> </td>
-    <td><%= (rental_empty ? link_to 'Destroy', latest_rental, method: :delete, data: { confirm: 'Are you sure?' }) %></td>
+    <td><%= (rental_empty ? (link_to 'Destroy', latest_rental, method: :delete, data: { confirm: 'Are you sure?' })) %></td>
   </tr>
 <% end %>
 </table>
