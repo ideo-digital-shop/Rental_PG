@@ -57,7 +57,7 @@ class RentalsController < ApplicationController
   def return
     @rental =  Rental.try(:where, "device_id = ? and email = ?", params[:device_id], params[:email])
     respond_to do |format|
-      if @rental.nil?
+      if @rental.empty?
         format.html { render action: "return"}
       else
         @rental.destroy

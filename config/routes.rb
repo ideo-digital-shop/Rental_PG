@@ -2,6 +2,7 @@ Main::Application.routes.draw do
   resources :rentals do
     collection do
       get 'return'
+      post 'return_confirm'
     end
   end
 
