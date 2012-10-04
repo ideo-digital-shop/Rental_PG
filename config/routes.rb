@@ -1,5 +1,10 @@
 Main::Application.routes.draw do
-  resources :rentals
+  resources :rentals do
+    collection do
+      get 'return'
+    end
+  end
+
 
   resources :devices
   
