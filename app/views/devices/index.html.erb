@@ -5,9 +5,6 @@
     <th>Device type</th>
     <th>Rented to</th>
     <th>Available After</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @devices.each do |device| %>
@@ -18,7 +15,6 @@
     <% rental_empty = device.rentals.empty? %>
     <td><%= (rental_empty ? "n/a": (mail_to latest_rental.email)) %></td>
     <td><%= (rental_empty ? "Currently Available": latest_rental.end) %> </td>
-    <td><%= link_to 'Show', device %></td>
   </tr>
 <% end %>
 </table>
