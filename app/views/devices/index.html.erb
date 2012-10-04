@@ -16,7 +16,7 @@
     <% rental_empty = device.rental.nil? %>
     <td><%= (rental_empty ? "n/a": (mail_to latest_rental.email)) %></td>
     <td><%= (rental_empty ? "Currently Available": latest_rental.end) %> </td>
-    <td><%= (rental_empty ? (link_to 'Rent', :controller => "rentals", :action => "new", :device_id => device.device_id, :class => "btn btn-inverse btn-small"):(link_to 'Return', latest_rental, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-success btn-small")) %></td>
+    <td><%= (rental_empty ? (link_to 'Rent', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-inverse btn-small"):(link_to 'Return', latest_rental, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-success btn-small")) %></td>
   </tr>
 <% end %>
 </table>
