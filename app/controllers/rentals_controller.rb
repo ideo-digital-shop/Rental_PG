@@ -13,7 +13,7 @@ class RentalsController < ApplicationController
   # GET /rentals/1
   # GET /rentals/1.json
   def show
-    @rental = Rental.find(params[:device_id])
+    @rental = Rental.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
