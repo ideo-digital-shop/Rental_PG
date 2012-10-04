@@ -25,7 +25,7 @@ class RentalsController < ApplicationController
   # GET /rentals/new.json
   def new
     @rental = Rental.new
-    @rental_id = params[:id]
+    @rental_id = params[:rental_id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @rental }
@@ -45,7 +45,7 @@ class RentalsController < ApplicationController
       if @rental.save
         RenterMailer.confirmEmail(@rental).deliver
         Rental.emailRenters
-        format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
+        format.html { redirect_to @rental, notice: "Thanks - you're all set!. The locker code is - LOCKER_CODE_HERE" }
         format.json { render json: @rental, status: :created, location: @rental }
       else
         format.html { render action: "new" }
@@ -76,7 +76,7 @@ class RentalsController < ApplicationController
     @rental.destroy
 
     respond_to do |format|
-      format.html { redirect_to rentals_url }
+      format.html { redirect_to rentals_url, notice: 'Return successful - Thanks!' }
       format.json { head :no_content }
     end
   end
