@@ -53,9 +53,17 @@ class RentalsController < ApplicationController
       end
     end
   end
-
+  Rental.
   def return
-    @rental = Rental.where("device_id = ? and email = ?", params[:device_id], params[:email])
+    @rental =  Rental.try(:where, "device_id = ? and email = ?", params[:device_id], params[:email])
+    respond_to do |format|
+      if @rental.nil?
+        format.html { render action: "return"}
+      else
+        @rental.destroy
+        format.html { redirect_to "index", notice: "Thank you for returning your device!"}
+      end
+    end
   end
 
   # PUT /rentals/1
