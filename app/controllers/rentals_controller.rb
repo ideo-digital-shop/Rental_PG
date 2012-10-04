@@ -53,7 +53,7 @@ class RentalsController < ApplicationController
       end
     end
   end
-  Rental.
+
   def return
     @rental =  Rental.try(:where, "device_id = ? and email = ?", params[:device_id], params[:email])
     respond_to do |format|
