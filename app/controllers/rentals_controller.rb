@@ -76,7 +76,7 @@ class RentalsController < ApplicationController
     @rental.destroy
 
     respond_to do |format|
-      format.html { redirect_to rentals_url, notice: 'Return successful - Thanks!' }
+      format.html { redirect_to :controller => "devices", :action => "index", notice: 'Return successful - Thanks!' }
       format.json { head :no_content }
     end
   end
