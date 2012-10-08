@@ -1,4 +1,7 @@
 <h1>Devices</h1>
+  <% if flash[:notice] -%>
+    <p class='notice'><%=h flash[:notice] %></p>
+  <% end -%>
 <table class="table table-condensed">
   <tr>
     <th>Device</th>
