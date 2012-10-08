@@ -3,7 +3,7 @@ class RentalsController < ApplicationController
   # GET /rentals.json
   def index
     @rentals = Rental.all
-    flash[:notice] = params[:notice]
+   
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @rentals }
