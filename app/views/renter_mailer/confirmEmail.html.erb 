@@ -5,9 +5,7 @@
   </head>
   <body>
     <h1>Rental confirmation for <%= @rental.renter %></h1>
-    <p>
-      You have successfully signed up to example.com,
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+
+    <p>Thanks for your rental and have a great day!</p>
   </body>
 </html>
