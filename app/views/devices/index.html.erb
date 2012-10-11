@@ -19,7 +19,7 @@
     <% rental_empty = device.rental.nil? %>
     <td><%= (rental_empty ? "n/a": (mail_to latest_rental.email)) %></td>
     <td><%= (rental_empty ? "Currently Available": latest_rental.end) %> </td>
-    <td><%= (rental_empty ? (link_to 'Rent Device', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-inverse btn-small"):(link_to 'Return Device', latest_rental, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-success btn-small checkReturn")) %></td>
+    <td><%= (rental_empty ? (link_to 'Rent Device', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-inverse btn-small"):(link_to 'Return Device', latest_rental, method: :delete, :class => "btn btn-success btn-small checkReturn")) %></td>
   </tr>
 <% end %>
 </table>
@@ -27,7 +27,7 @@
 <%= link_to 'New Device', new_device_path, :class => "btn btn-primary" %>
 <script type="text/javascript">
 //<![CDATA[
-  $("checkReturn").on('click', function(e){
+  $(".checkReturn").on('click', function(e){
 
     var CODE = "password"
     var fname=prompt("Please enter the return code (located at the dShop in 100)")
