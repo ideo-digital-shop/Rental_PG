@@ -47,7 +47,7 @@
 <%= link_to 'New Device', new_device_path, :class => "btn btn-primary" %>
 <script type="text/javascript">
 //<![CDATA[
-  $(".checkReturn").on('click', function(e){
+  $("a.checkReturn").on('click', function(e){
     var CODE = "password";
     fname = $("#return").val();
     if(CODE != fname){
