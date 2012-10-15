@@ -23,16 +23,7 @@
     <% if(rental_empty) %>
       <%= link_to 'Rent Device', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-inverse btn-small" %>
     <% else %>
-      <div class="btn-group">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          Return Device
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <input type="text" placeholder="Enter Return Code Here"/>
-          <%= link_to 'Return Device', latest_rental, method: :delete, :class => "btn btn-success btn-small checkReturn" %>
-        </ul>
-      </div>
+        <a class="btn dropdown-toggle" role="button" data-toggle="modal" href="#myModal"> Return Device </a>
     <% end %>
     </td>
   </tr>
@@ -40,11 +31,25 @@
 </table>
 <br />
 <%= link_to 'New Device', new_device_path, :class => "btn btn-primary" %>
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Confirm Return</h3>
+  </div>
+  <div class="modal-body">
+    <p>Please enter the return code located in the d.Shop</p>
+    <input id="return" type="text" placeholder="Enter Return Code Here"/>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <%= link_to 'Return Device', latest_rental, method: :delete, :class => "btn btn-success btn-small checkReturn" %>
+  </div>
+</div>
 <script type="text/javascript">
 //<![CDATA[
   $(".checkReturn").on('click', function(e){
     var CODE = "password";
-    fname = $(this).siblings("input").val();
+    fname = $("#return").val();
     if(CODE != fname){
       e.preventDefault();
       alert("Incorrect code given - please check the code posted in the D-Shop")
