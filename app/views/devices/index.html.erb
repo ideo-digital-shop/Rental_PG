@@ -23,7 +23,7 @@
     <% if(rental_empty) %>
       <%= link_to 'Rent Device', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-inverse btn-small" %>
     <% else %>
-        <a class="btn dropdown-toggle" role="button" data-toggle="modal" href="#myModal"> Return Device </a>
+        <a role="button" data-toggle="modal" href="#myModal"> Return Device </a>
         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
