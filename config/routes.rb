@@ -1,4 +1,6 @@
 Main::Application.routes.draw do
+  resources :rental_records
+
   resources :rentals 
   resources :devices
   

@@ -73,6 +73,8 @@ class RentalsController < ApplicationController
   # DELETE /rentals/1.json
   def destroy
     @rental = Rental.find(params[:id])
+    totalTime = DateTime.now.to_date - @rental.created_at.to_date
+    RentalRecord.create(:email => @rental.email, :renter => @rental.renter,:device_id => @rental.device_id, :total_time => totalTime.to_i)
     @rental.destroy
 
     respond_to do |format|
