@@ -19,7 +19,22 @@
     <% rental_empty = device.rental.nil? %>
     <td><%= (rental_empty ? "n/a": (mail_to latest_rental.email)) %></td>
     <td><%= (rental_empty ? "Currently Available": latest_rental.end) %> </td>
-    <td><%= (rental_empty ? (link_to 'Rent Device', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-inverse btn-small"):(link_to 'Return Device', latest_rental, method: :delete, :class => "btn btn-success btn-small checkReturn")) %></td>
+    <td>
+    <% if(rental_empty) %>
+      <%= link_to 'Rent Device', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-inverse btn-small" %>
+    <% else %>
+      <div class="btn-group">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          Return Device
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <input type="text" placeholder="Enter Return Code Here"/>
+          <%= link_to 'Return Device', latest_rental, method: :delete, :class => "btn btn-success btn-small checkReturn" %>
+        </ul>
+      </div>
+    <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
@@ -28,9 +43,8 @@
 <script type="text/javascript">
 //<![CDATA[
   $(".checkReturn").on('click', function(e){
-
-    var CODE = "password"
-    var fname=prompt("Please enter the return code (located at the dShop in 100)")
+    var CODE = "password";
+    fname = $(this).siblings("input").val();
     if(CODE != fname){
       e.preventDefault();
       alert("Incorrect code given - please check the code posted in the D-Shop")
