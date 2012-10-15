@@ -1,6 +1,6 @@
 <h1>Listing rental_records</h1>
 
-<table>
+<table class="table table-condensed">
   <tr>
     <th>Email</th>
     <th>Renter</th>
@@ -19,9 +19,9 @@
     <td><%= rental_record.end %></td>
     <td><%= rental_record.device_id %></td>
     <td><%= rental_record.total_time %></td>
-    <td><%= link_to 'Show', rental_record %></td>
-    <td><%= link_to 'Edit', edit_rental_record_path(rental_record) %></td>
-    <td><%= link_to 'Destroy', rental_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', rental_record, :class => 'btn btn-primary' %></td>
+    <td><%= link_to 'Edit', edit_rental_record_path(rental_record), :class => 'btn btn-default' %></td>
+    <td><%= link_to 'Destroy', rental_record, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
   </tr>
 <% end %>
 </table>
