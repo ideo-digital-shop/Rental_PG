@@ -50,7 +50,7 @@
 //<![CDATA[
   $("a.checkReturn").on('click', function(e){
     var CODE = "password";
-    fname = $($(this).id() + "return").val();
+    fname = $("#" + $(this).attr("id") + "return").val();
     if(CODE != fname){
       e.preventDefault();
       e.stopPropagation();
