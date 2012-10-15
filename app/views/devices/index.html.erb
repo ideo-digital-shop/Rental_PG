@@ -23,19 +23,20 @@
     <% if(rental_empty) %>
       <%= link_to 'Rent Device', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-inverse btn-small" %>
     <% else %>
-        <a class="btn" role="button" data-toggle="modal" href="#myModal"> Return Device </a>
-        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none" aria-hidden="true">
+        <a class="btn" role="button" data-toggle="modal" href="#<%= device.rental_id %>Modal"> Return Device </a>
+        <div class="modal" id="<%= device.rental_id %>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none" aria-hidden="true">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myModalLabel">Confirm Return</h3>
           </div>
           <div class="modal-body">
             <p>Please enter the return code located in the d.Shop</p>
-            <input id="return" type="text" placeholder="Enter Return Code Here"/>
+            <p class="error">
+            <input id="<%= device.rental_id %>return" type="text" placeholder="Enter Return Code Here"/>
           </div>
           <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <%= link_to 'Return Device', latest_rental, method: :delete, :class => "btn btn-success btn-small checkReturn" %>
+            <%= link_to 'Return Device', latest_rental, method: :delete, :class => "btn btn-success btn-small checkReturn", :id => device.device_id %>
           </div>
         </div>
     <% end %>
@@ -49,7 +50,7 @@
 //<![CDATA[
   $("a.checkReturn").on('click', function(e){
     var CODE = "password";
-    fname = $("#return").val();
+    fname = $($(this).id() + "return").val();
     if(CODE != fname){
       e.preventDefault();
       e.stopPropagation();
