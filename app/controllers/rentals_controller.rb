@@ -74,7 +74,7 @@ class RentalsController < ApplicationController
   def destroy
     @rental = Rental.find(params[:id])
     totalTime = DateTime.now.to_date - @rental.created_at.to_date
-    RentalRecord.create(:email => @rental.email, :renter => @rental.renter,:device_id => @rental.device_id, :total_time => totalTime.to_i)
+    RentalRecord.create(:email => @rental.email, :renter => @rental.renter,:device_id => @rental.device_id, :total_time => totalTime.to_i, :end => @rental.end)
     @rental.destroy
 
     respond_to do |format|
