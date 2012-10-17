@@ -6,15 +6,18 @@
   <tr>
     <th>Device</th>
     <th>Device type</th>
+    <th>Additional Information</th>
     <th>Rented to</th>
     <th>Available After</th>
     <th></th>
+
   </tr>
 
 <% @devices.each do |device| %>
   <tr>
     <td><%= device.device_id %></td>
     <td><%= device.device_type %></td>
+    <td><%= device.additional_information %></td>
     <% latest_rental = device.rental %>
     <% rental_empty = device.rental.nil? %>
     <td><%= (rental_empty ? "n/a": (mail_to latest_rental.email)) %></td>
