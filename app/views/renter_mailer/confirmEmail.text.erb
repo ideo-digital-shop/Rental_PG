@@ -1,5 +1,9 @@
 Rental confirmation for <%= @rental.renter %>
 ===============================================
- 
+    	
+    Email : <%= @rental.email %>
+    Due Date : <%= @rental.end %>
+    Device Type : <%= @rental.device.device_type %>
+	Additional Information : <%= @rental.device.additional_information %>
  
 Thanks for your rental and have a great day!

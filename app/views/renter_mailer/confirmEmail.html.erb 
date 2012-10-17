@@ -5,7 +5,24 @@
   </head>
   <body>
     <h1>Rental confirmation for <%= @rental.renter %></h1>
-
+    <table>
+    	<tr>
+    		<td>Email</td>
+    		<td><%= @rental.email %></td>
+    	</tr>
+      	<tr>
+    		<td>Due Date</td>
+    		<td><%= @rental.end %></td>
+    	</tr>
+        <tr>
+    		<td>Device Type</td>
+    		<td><%= @rental.device.device_type %></td>
+    	</tr>
+        <tr>
+    		<td>Additional Information</td>
+    		<td><%= @rental.device.additional_information %></td>
+    	</tr>
+    </table>
     <p>Thanks for your rental and have a great day!</p>
   </body>
 </html>
