@@ -11,19 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :device_id %><br />
-    <%= f.text_field :device_id %>
+    <%= f.text_field :device_id, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :device_type %><br />
-    <%= f.text_field :device_type %>
+    <%= f.text_field :device_type, :class => 'form-control' %>
   </div>
-    <div class="field">
+    <div class="form-group">
     <%= f.label :additional_information %><br />
-    <%= f.text_field :additional_information %>
+    <%= f.text_field :additional_information, :class => 'form-control'%>
   </div>
   <div class="actions">
     <%= f.submit "Submit", :class => "btn btn-primary" %>
   </div>
 <% end %>
+
