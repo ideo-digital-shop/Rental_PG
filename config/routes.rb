@@ -1,10 +1,14 @@
 Main::Application.routes.draw do
   resources :rental_records
 
-  resources :rentals 
+  resources :rentals do
+    collection do 
+      get 'home'
+    end
+  end
   resources :devices
   
-  root :to => 'devices#index'
+  root :to => 'devices#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

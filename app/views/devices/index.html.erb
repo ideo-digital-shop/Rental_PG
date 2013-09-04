@@ -1,63 +1,67 @@
-<h1>Devices</h1>
-  <% if flash[:notice] -%>
-    <p class='notice'><%=h flash[:notice] %></p>
-  <% end -%>
-<table class="table table-condensed">
-  <tr>
-    <th>Device</th>
-    <th>Device type</th>
-    <th>Additional Information</th>
-    <th>Rented to</th>
-    <th>Available After</th>
-    <th></th>
+<div class='container'>
+  <div class='row'>
+  <h1>Devices</h1>
+    <% if flash[:notice] -%>
+      <p class='notice'><%=h flash[:notice] %></p>
+    <% end -%>
+  <table class="table table-condensed table-striped">
+    <tr>
+      <th>Device</th>
+      <th>Device type</th>
+      <th>Additional Information</th>
+      <th>Rented to</th>
+      <th>Available After</th>
+      <th>Actions</th>
 
-  </tr>
+    </tr>
 
-<% @devices.each do |device| %>
-  <tr>
-    <td><%= device.device_id %></td>
-    <td><%= device.device_type %></td>
-    <td><%= device.additional_information %></td>
-    <% latest_rental = device.rental %>
-    <% rental_empty = device.rental.nil? %>
-    <td><%= (rental_empty ? "n/a": (mail_to latest_rental.email)) %></td>
-    <td><%= (rental_empty ? "Currently Available": latest_rental.end) %> </td>
-    <td>
-    <% if(rental_empty) %>
-      <%= link_to 'Rent Device', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-success" %>
-    <% else %>
-        <a class="btn" role="button" data-toggle="modal" href="#<%= device.device_id %>Modal"> Return Device </a>
-        <div class="modal" id="<%= device.device_id %>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Confirm Return</h3>
+  <% @devices.each do |device| %>
+    <tr>
+      <td><%= device.device_id %></td>
+      <td><%= device.device_type %></td>
+      <td><%= device.additional_information %></td>
+      <% latest_rental = device.rental %>
+      <% rental_empty = device.rental.nil? %>
+      <td><%= (rental_empty ? "n/a": (mail_to latest_rental.email)) %></td>
+      <td><%= (rental_empty ? "Currently Available": latest_rental.end) %> </td>
+      <td>
+      <% if(rental_empty) %>
+        <%= link_to 'Rent', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-sm btn-success" %>
+      <% else %>
+          <a class="btn" role="button" data-toggle="modal" href="#<%= device.device_id %>Modal"> Return </a>
+          <div class="modal" id="<%= device.device_id %>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Confirm Return</h3>
+            </div>
+            <div class="modal-body">
+              <p>Please enter the return code located in the d.Shop (Hint - the code is 'password')</p>
+              <p class="error">
+              <input id="<%= device.device_id %>return" type="text" placeholder="Enter Return Code Here"/>
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <%= link_to 'Return Device', latest_rental, method: :delete, :class => "btn btn-success btn-small checkReturn", :id => device.device_id %>
+            </div>
           </div>
-          <div class="modal-body">
-            <p>Please enter the return code located in the d.Shop (Hint - the code is 'password')</p>
-            <p class="error">
-            <input id="<%= device.device_id %>return" type="text" placeholder="Enter Return Code Here"/>
-          </div>
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <%= link_to 'Return Device', latest_rental, method: :delete, :class => "btn btn-success btn-small checkReturn", :id => device.device_id %>
-          </div>
-        </div>
-    <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
-<br />
-<script type="text/javascript">
-//<![CDATA[
-  $("a.checkReturn").on('click', function(e){
-    var CODE = "password";
-    fname = $("#" + $(this).attr("id") + "return").val();
-    if(CODE != fname){
-      e.preventDefault();
-      e.stopPropagation();
-      alert("Incorrect code given - please check the code posted in the D-Shop")
-    }
-  })
-//]]>
-</script>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+  <br />
+  <script type="text/javascript">
+  //<![CDATA[
+    $("a.checkReturn").on('click', function(e){
+      var CODE = "password";
+      fname = $("#" + $(this).attr("id") + "return").val();
+      if(CODE != fname){
+        e.preventDefault();
+        e.stopPropagation();
+        alert("Incorrect code given - please check the code posted in the D-Shop")
+      }
+    })
+  //]]>
+  </script>
+</div>
+</div>
