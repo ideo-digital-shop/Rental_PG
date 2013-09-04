@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121017175535) do
+ActiveRecord::Schema.define(:version => 20130904205502) do
 
   create_table "devices", :force => true do |t|
     t.string   "device_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20121017175535) do
     t.integer  "total_time"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "comment"
   end
 
   create_table "rentals", :force => true do |t|
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20121017175535) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "renter"
+    t.string   "comment"
   end
 
 end
