@@ -7,6 +7,7 @@
     <th>End</th>
     <th>Device</th>
     <th>Days Rented</th>
+    <th>Comments</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +20,7 @@
     <td><%= rental_record.end %></td>
     <td><%= rental_record.device_id %></td>
     <td><%= rental_record.total_time %></td>
+    <td><%= rental_record.comment %></td>
     <td><%= link_to 'Show', rental_record, :class => 'btn btn-primary' %></td>
     <td><%= link_to 'Edit', edit_rental_record_path(rental_record), :class => 'btn btn-default' %></td>
     <td><%= link_to 'Destroy', rental_record, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-inverse' %></td>

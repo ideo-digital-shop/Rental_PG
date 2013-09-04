@@ -7,6 +7,7 @@
     <th>Email</th>
     <th>End</th>
     <th>Device</th>
+    <th>Comments</th>
     <th></th>
     <th></th>
     <th></th>
@@ -18,6 +19,7 @@
     <td><%= mail_to rental.email %></td>
     <td><%= rental.end %></td>
     <td><%= rental.device_id %></td>
+    <td><%= rental.comment %></td>
     <td><%= link_to 'Show', rental %></td>
     <td><%= link_to 'Edit', edit_rental_path(rental) %></td>
     <td><%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default' %></td>
