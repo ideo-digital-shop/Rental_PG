@@ -26,7 +26,7 @@
       <td><%= (rental_empty ? "Currently Available": latest_rental.end) %> </td>
       <td>
       <% if(rental_empty) %>
-        <%= link_to 'Rent', {:controller => "rentals", :action => "new", :device_id => device.device_id}, :class => "btn btn-sm btn-success" %>
+        <%= link_to 'Rent', {:controller => "rentals", :action => "new", :device_id => device.id}, :class => "btn btn-sm btn-success" %>
       <% else %>
           <a class="btn btn-default" role="button" data-toggle="modal" href="#<%= device.device_id %>Modal"> Return </a>
           <div class="modal" id="<%= device.device_id %>Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:none" aria-hidden="true">
