@@ -40,12 +40,12 @@ class RentalsController < ApplicationController
   # POST /rentals
   # POST /rentals.json
   def create
-    @rental = Rental.new(params[:rental])
+    @rental = Rental.new(rental_params)
     respond_to do |format|
       if @rental.save
         RenterMailer.confirmEmail(@rental).deliver
         Rental.emailRenters
-        format.html { redirect_to @rental, notice: "Thanks - you're all set!. The locker code is - LOCKER_CODE_HERE" }
+        format.html { redirect_to @rental, notice: "Thanks - you're all set!" }
         format.json { render json: @rental, status: :created, location: @rental }
       else
         format.html { render action: "new" }
@@ -86,5 +86,11 @@ class RentalsController < ApplicationController
   # GET /rentals/home
   def home
 
+  end
+
+  private
+  def rental_params
+      #attr_accessible :device_id, :email, :end, :renter, :comment
+    params.require(:rental).permit(:device_id, :email, :end, :renter, :comment)
   end
 end

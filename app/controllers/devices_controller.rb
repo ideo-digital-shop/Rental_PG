@@ -40,7 +40,7 @@ class DevicesController < ApplicationController
   # POST /devices
   # POST /devices.json
   def create
-    @device = Device.new(params[:device])
+    @device = Device.new(device_params)
 
     respond_to do |format|
       if @device.save
@@ -79,5 +79,10 @@ class DevicesController < ApplicationController
       format.html { redirect_to devices_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def device_params
+    params.require(:device).permit(:device_id, :device_type, :additional_information)
   end
 end
