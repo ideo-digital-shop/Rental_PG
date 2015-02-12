@@ -59,7 +59,7 @@ class DevicesController < ApplicationController
     @device = Device.find(params[:id])
 
     respond_to do |format|
-      if @device.update_attributes(params[:device])
+      if @device.update_attributes(device_params)
         format.html { redirect_to @device, notice: 'Device was successfully updated.' }
         format.json { head :no_content }
       else
@@ -83,6 +83,6 @@ class DevicesController < ApplicationController
 
   private
   def device_params
-    params.require(:device).permit(:device_id, :device_type, :additional_information)
+    params.require(:device).permit(:device_id, :device_type, :rate_daily, :additional_information)
   end
 end
