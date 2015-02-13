@@ -8,6 +8,6 @@ class RenterMailer < ActionMailer::Base
   end
   def confirmEmail(rental)
   	@rental = rental
-  	mail(:to => @rental.email, :subject => "Digital Shop iPad Rental Confirmation")
+  	mail(:to => @rental.email, :bcc => "sfproduction@ideo.com", :subject => "Digital Shop iPad Rental Confirmation")
   end
 end
