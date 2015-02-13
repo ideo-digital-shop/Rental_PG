@@ -2,7 +2,12 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = Device.all
+    if params[:rented].present?
+      @devices = Device.rented
+    else
+      @devices = Device.all
+    end
+    
     flash[:notice] = params[:notice]
     respond_to do |format|
       format.html # index.html.erb

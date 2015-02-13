@@ -2,12 +2,12 @@
 
 <table class="table table-condensed">
   <tr>
-    <th>Email</th>
     <th>Renter</th>
-    <th>End</th>
+    <th>Returned</th>
     <th>Device</th>
-    <th>Days Rented</th>
-    <th>Comments</th>
+    <th>Days</th>
+    <th>Rate</th>
+    <th>Total</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,12 +15,12 @@
 
 <% @rental_records.each do |rental_record| %>
   <tr>
-    <td><%= rental_record.email %></td>
-    <td><%= rental_record.renter %></td>
+    <td><%= rental_record.renter %> (<%= rental_record.email %>)</td>
     <td><%= rental_record.end %></td>
-    <td><%= rental_record.device_id %></td>
+    <td><%= rental_record.device.device_id %> (<%= rental_record.device.device_type %>)</td>
     <td><%= rental_record.total_time %></td>
-    <td><%= rental_record.comment %></td>
+    <td><%= number_to_currency(rental_record.rate_daily) %></td>
+    <td><%= number_to_currency(rental_record.total_price) %></td>
     <td><%= link_to 'Show', rental_record, :class => 'btn btn-primary' %></td>
     <td><%= link_to 'Edit', edit_rental_record_path(rental_record), :class => 'btn btn-default' %></td>
     <td><%= link_to 'Destroy', rental_record, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-inverse' %></td>

@@ -42,6 +42,8 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(rental_params)
     @rental.end = Date.strptime(params[:end], "%m/%d/%Y")
+    @rental.rate_daily = @rental.device.rate_daily
+
     respond_to do |format|
       if @rental.save
         RenterMailer.confirmEmail(@rental).deliver
@@ -74,8 +76,17 @@ class RentalsController < ApplicationController
   # DELETE /rentals/1.json
   def destroy
     @rental = Rental.find(params[:id])
-    totalTime = DateTime.now.to_date - @rental.created_at.to_date
-    RentalRecord.create(:email => @rental.email, :renter => @rental.renter,:device_id => @rental.device_id, :total_time => totalTime.to_i, :end => @rental.end)
+    totalDays = (DateTime.now.to_date - @rental.created_at.to_date).to_i
+    totalPrice = totalDays * @rental.rate_daily
+    RentalRecord.create(
+      :email => @rental.email,
+      :renter => @rental.renter,
+      :device_id => @rental.device_id,
+      :total_time => totalDays,
+      :rate_daily => @rental.rate_daily,
+      :total_price => totalPrice,
+      :end => @rental.end
+      )
     @rental.destroy
 
     respond_to do |format|
