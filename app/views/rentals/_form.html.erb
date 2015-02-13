@@ -18,15 +18,32 @@
     <%= f.label :email %><br />
     <%= f.text_field :email, :class => 'form-control' %>
   </div>
+    <div class="form-group">
+    <%= f.label :project %><br />
+    <%= f.text_field :project, :class => 'form-control' %>
+  </div>
   <div class="form-group">
     <%= f.label :notes %> Anything we should know about your use of this?<br />
     <%= f.text_field :comment, :class => 'form-control' %>
   </div>  
   <div class="form-group">
     <%= f.label :end %><br />
-    <%= f.date_select :end, {}, {:class => 'form-inline'} %>
+
+    <div class='input-group date' id='datetimepicker1'>
+      <%= text_field_tag :end, nil, class: 'form-control', data: { date_format: 'MM/DD/YYYY' } %>
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
   </div>
-    <%= f.hidden_field :device_id, :value => params[:device_id], :class => 'form-control' %>
+  <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+              defaultDate: moment("<%= @rental.end.strftime('%m/%d/%Y') %>"),
+              format: "MM/DD/YYYY"
+            });
+        });
+    </script>
+
+  <%= f.hidden_field :device_id, :value => params[:device_id], :class => 'form-control' %>
   
   <div class="actions">
     <%= f.submit "Add rental", :class => "btn btn-primary" %>

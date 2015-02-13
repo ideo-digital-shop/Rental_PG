@@ -7,6 +7,7 @@
     <th>Email</th>
     <th>End</th>
     <th>Device</th>
+    <th>Project</th>
     <th>Comments</th>
     <th></th>
     <th></th>
@@ -19,6 +20,7 @@
     <td><%= mail_to rental.email %></td>
     <td><%= rental.end %></td>
     <td><%= rental.device_id %></td>
+    <td><%= rental.project %></td>
     <td><%= rental.comment %></td>
     <td><%= link_to 'Show', rental %></td>
     <td><%= link_to 'Edit', edit_rental_path(rental) %></td>
